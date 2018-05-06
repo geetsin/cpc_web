@@ -1,0 +1,51 @@
+{% extends "cpc/includes/header.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<center>
+  <div class="jumbotron"  style="background-color:#FFFFFF;">
+    <div class="container">
+      <div class="row">
+    <div class="col-sm">
+      <h1 class="display-4">You are Home!</h1>
+      <p class="lead">Welcome to the official website of <b>Canberra Portuguese Club</b>.</p>
+      <p> A place for Portuguese in Canberra to unite and enjoy like home..
+    </div>
+  <div class="col-sm ">
+      <img src="{% static "cpc/images/pflag.png" %}" class="img-fluid" alt="Responsive image" width="400" height="200" alt="">
+  </div>
+  </div>
+</div>
+</div>
+</center>
+
+<center>
+<div class="container">
+  <div class="row">
+    <div class="col-lg">
+      <h4> Events</h4>
+      <p class="lead"> Find what's happening </p>
+      <a class="btn btn-outline-success" href="/events" role="button">Events</a>
+      </br>
+    </div>
+
+    <div class="col-lg">
+      <h4> Contact Us</h4>
+      <p class="lead"> For all your queries, contact us </p>
+      <a class="btn btn-outline-success" href="/contact" role="button">Contact</a>
+      </br>
+    </div>
+
+    <div class="col-lg">
+      <h4> Join Us</h4>
+      <p class="lead"> Come join the family </p>
+      <a class="btn btn-outline-success" href="#" role="button">Register</a>
+    </div>
+  <div/>
+</div>
+</div>
+</center>
+</br></br></br></br></br></br>
+
+{% include 'cpc/includes/footer.html'%}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "cpc/includes/header.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div>
+</br></br>
+
+<div class="container">
+  <h2> Upcoming Events </h2>
+
+  </br></br>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Event</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Duration</th>
+      <th scope="col">Location</th>
+      <th scope="col">Open To All</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in eventsData %}
+    <tr>
+      <td> {{ r.eventName }}</td>
+      <td> {{ r.eventDescription }}</td>
+      <td> {{ r.eventDate }}</td>
+      <td> {{ r.eventTime }}</td>
+      <td> {{ r.eventDuration }}</td>
+      <td> {{ r.eventVenue }}</td>
+      {% if r.isOpenToAll %}
+      <td> YES </td>
+      {% else %}
+      <td> Members Only</td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+
+{% include 'cpc/includes/footer.html'%}
+{% endblock %}
