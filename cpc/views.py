@@ -7,6 +7,12 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import ContactForm
 from cpc.models import Events
+from cpc.models import Members
+from django.contrib.auth.models import User
+from django.shortcuts import render_to_response
+from django.http import HttpResponseRedirect
+from django.contrib import auth
+from django.template.context_processors import csrf
 # Create your views here.
 
 def index(request):
@@ -45,3 +51,42 @@ def thanks(request):
 def events(request):
     eData = Events.objects.all()
     return render(request, 'cpc/events.html', {"eventsData" : eData})
+
+def login(request):
+    c = {}
+    c.update(csrf(request))
+    return render(request,'cpc/login.html',c)
+
+def auth_views(request):
+
+    email = request.POST.get('inputEmail','')
+    password = request.POST.get('inputPassword','')
+    user = auth.authenticate(username=email, password=password)
+    # print(email)
+    # print(password)
+    if user is not None:
+        auth.login(request,user)
+        # print(curUser)
+        # return render(request,'cpc/loggedIn.html')
+        return redirect('/userPage')
+    else:
+        # return render(request,'cpc/invalidLogin.html')
+        return redirect('/invalidLogin')
+
+def userPage(request):
+    # if request.user.is_superuser:
+    #     allUsers = User.objects.all()
+    # else:
+    allMembers = Members.objects.all()
+    eData = Events.objects.all()
+    return render(request,'cpc/userPage.html', {"allMembers" : allMembers, "eventsData" : eData})
+
+def logout(request):
+    auth.logout(request)
+    # return render(request,'cpc/logout.html')
+    thanksVar = "You have been successfully logged out!"
+    return render(request, 'cpc/thanks.html', {"thanksVar" : thanksVar})
+
+def invalidLogin(request):
+    thanksVar = "ERROR: Login credentials did not match! Please try again."
+    return render(request, 'cpc/thanks.html', {"thanksVar" : thanksVar})

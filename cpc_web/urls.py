@@ -16,9 +16,13 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from . import views
+# from django.shortcuts import render_to_response
+# from django.http import HttpResponseRedirect
+# from django.contrib import auth
+# from django.core.context_processors import csrf
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('cpc.urls')),
-    
+
 ]

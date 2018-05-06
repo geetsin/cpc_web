@@ -1,0 +1,18 @@
+{% extends "cpc/includes/header.html" %}
+{% load staticfiles %}
+{% block content %}
+</br></br></br>
+
+
+</br>
+
+<p>Auth View</p>
+<script>
+    var timer = setTimeout(function() {
+        window.location='/loggedIn'
+    }, 3000);
+</script>
+</br></br></br></br></br></br>
+
+{% include 'cpc/includes/footer.html'%}
+{% endblock %}

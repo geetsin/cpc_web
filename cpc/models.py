@@ -14,3 +14,14 @@ class Events(models.Model):
     isOpenToAll = models.BooleanField()
     eventDuration = models.TextField()
     eventVenue = models.TextField()
+
+class Members(models.Model):
+    userName = models.TextField()
+    firstName = models.TextField()
+    lastName = models.TextField()
+    address = models.TextField()
+    email = models.TextField()
+    phone = models.TextField()
+    membershipExpiry = models.DateField()
+    familyCount = models.IntegerField()
+    upcomingEvent = models.IntegerField()

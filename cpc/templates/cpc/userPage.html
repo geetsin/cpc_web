@@ -1,0 +1,59 @@
+{% extends "cpc/includes/header.html" %}
+{% load staticfiles %}
+{% block content %}
+</br></br></br>
+
+
+</br>
+<div class="container">
+<h2>Welcome, {{ user.get_username }}</h2>
+{% if request.user.is_superuser %}
+</br><h5 class="lead">Hei Lord!</br>
+  You can control everything <a href="/admin">here</a> </h5></br></br></br></br></br></br>
+
+{% else %}
+  {% for m in allMembers %}
+    {% if m.userName ==  user.get_username %}
+    <div class="row">
+      <div class="col">
+      </br><p class="lead" style="padding-left:10%;">Name: {{m.firstName}} {{m.lastName}}
+      </br>Address: {{m.address}}
+      </br>Phone: {{m.phone}}
+      </br>Email: {{m.email}}
+      </br>Family Members: {{m.familyCount}}
+    </br><i>Membership Expiry: {{m.membershipExpiry}}</i></p>
+    </div>
+    <div class="col" style="padding-left:5%;">
+      <h5>Your Upcoming Events:</h5>
+
+      {% for e in eventsData %}
+        {% if e.eventId ==  m.upcomingEvent %}
+          <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Event Name</th>
+                <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {{ e.eventName }}</td>
+                <td> {{ e.eventDate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        {%endif%}
+      {% endfor%}
+    </div>
+    </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+</div>
+
+
+
+</br></br></br></br></br></br>
+
+{% include 'cpc/includes/footer.html'%}
+{% endblock %}
